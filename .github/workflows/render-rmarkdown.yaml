@@ -22,10 +22,13 @@ jobs:
   render-rmarkdown:
     runs-on: ubuntu-latest
     environment:
+      
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      # GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      # Use a personal access token with higher rate limits
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
