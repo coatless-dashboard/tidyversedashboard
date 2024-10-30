@@ -29,7 +29,7 @@ title: "`r params$title`"
 library(flexdashboard)
 library(gh)
 library(jsonlite)
-library(lubridate) 
+library(lubridate)
 library(forcats)
 library(dplyr)
 library(purrr)
