@@ -3,6 +3,9 @@ name: render-rmarkdown-pages
 on:
   push:
     paths: ['**.Rmd']
+  schedule:
+    # Runs at 5 PM PDT (UTC-7) which is midnight UTC-0
+    - cron: '0 0 * * *'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -43,7 +46,13 @@ jobs:
       - name: Render Rmarkdown files
         run: |
           mkdir -p _site
-          RMD_PATH=($(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '[.]Rmd$'))
+          if [ "${{ github.event_name }}" == "push" ]; then
+            # For push events, only render changed files
+            RMD_PATH=($(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '[.]Rmd$'))
+          else
+            # For scheduled events, render all Rmd files
+            RMD_PATH=($(find . -name '*.Rmd'))
+          fi
           Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_dir = "_site")' ${RMD_PATH[*]}
 
       - name: Upload artifact
