@@ -37,7 +37,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            github::coatless-dashboard/tidyversedashboard
+            any::flexdashboard
+            any::codetools
+            any::ggplot2
+            any::forcats
+            any::jsonlite
+            github::hadley/emo
           needs: check
 
       - name: Setup Pages
