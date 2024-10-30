@@ -33,7 +33,7 @@ library(lubridate)
 library(forcats)
 library(dplyr)
 library(purrr)
-library(tibble)
+library(tibble) 
 library(codetools) # there was a weird error on connect that needed this
 library(DT)
 library(tidyversedashboard)
