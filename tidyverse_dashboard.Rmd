@@ -4,7 +4,7 @@ output:
     orientation: rows
     vertical_layout: fill
     theme: paper
-    source_code: "https://github.com/jimhester/tidyversedashboard"
+    source_code: "https://github.com/tidyverse/tidyversedashboard"
 params:
   title:
     label: Title of report
