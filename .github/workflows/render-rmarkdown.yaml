@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   render-rmarkdown:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment:
       
       name: github-pages
@@ -52,6 +52,11 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Sleep for 2 minutes
+        run: |
+            echo "Waiting 120 seconds before starting the queries..."
+            sleep 120  # Sleep for 2 minutes
 
       - name: Render Rmarkdown files
         run: |
